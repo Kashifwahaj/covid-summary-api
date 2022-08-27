@@ -1,16 +1,13 @@
-import {  NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 
-const errorHandler = (err:any,req:Request,res:Response,next:NextFunction) => {
-    const statusCode = res.statusCode ?? 500;
+export const errorHandler = (err:Error,req:Request,res:Response) => {
+	const statusCode = res.statusCode ?? 500;
     
-    res.status(statusCode);
+	res.status(statusCode);
 
-    res.json({
-        message:err.message,
-        stack :process.env.NODE_ENV === 'production' ? null :err.stack 
-    });
-}
+	res.json({
+		message:err.message,
+		stack :process.env.NODE_ENV === "production" ? null :err.stack 
+	});
+};
 
-module.exports = {
-    errorHandler
-}

@@ -1,7 +1,7 @@
-const express = require('express');
-const { getVaccineSummary} = require('../controllers/covidController');
+import express = require("express");
+import CovidController = require("../controllers/covidController");
 const router = express.Router();
 
-router.get('/vaccine-summary',getVaccineSummary);
+router.get("/vaccine-summary",CovidController.getVaccineSummary);
 
 module.exports = router;
